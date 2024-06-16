@@ -12,7 +12,6 @@ import java.util.UUID;
 @Builder
 @Table(name ="EMAIL")
 public class Email {
-
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name ="EMAIL_ID")
@@ -20,9 +19,9 @@ public class Email {
 
     @Setter
     @Column(name = "EMAIL_STATUS")
-    private Boolean status;
+    private Boolean status; //메일의 발송 미 발송 확인을 위한 컬럼
 
     @ManyToOne
     @JoinColumn(name = "USER_ID", nullable = false)
-    private User user;
+    private User user;  //이메일 서비스 진행시 유저 아이디가 중복 저장 발생 예상되는 점으로 1대 다 관계 엔티티 생성
 }
