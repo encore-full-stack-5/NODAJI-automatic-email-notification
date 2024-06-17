@@ -21,14 +21,16 @@ public class User {
 
     @Setter
     @Column(name="USER_POINT")
-    private long point;
+    private long point; //노다지 플랫폼 포인트
+
+    @Column(name = "USER_NAME")
+    private int name;   //유저 네임
 
     @Column(name = "USER_RANK")
-    private int rank;
+    private int rank;   //당첨된 순위
 
     @Column(name="USER_GAME")
-    private String game;
-
+    private String game;  //  유저가 참여한 게임
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Email> emails;
 }
