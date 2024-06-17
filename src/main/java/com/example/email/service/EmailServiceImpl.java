@@ -5,6 +5,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+
 @Service
 @RequiredArgsConstructor
 public class EmailServiceImpl implements EmailService{
@@ -18,4 +19,7 @@ public class EmailServiceImpl implements EmailService{
         message.setText(text);
         javaMailSender.send(message);
     }
+
+
+
 }
