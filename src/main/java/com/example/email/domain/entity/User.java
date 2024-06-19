@@ -31,6 +31,5 @@ public class User {
 
     @Column(name="USER_GAME")
     private String game;  //  유저가 참여한 게임
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Email> emails;
+
 }
