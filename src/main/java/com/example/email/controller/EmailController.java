@@ -1,11 +1,10 @@
 package com.example.email.controller;
 
+import com.example.email.dto.EmailDto;
+import com.example.email.dto.UserDto;
 import com.example.email.service.EmailService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -14,9 +13,16 @@ public class EmailController {
 
     private final EmailService emailService;
 
-    @GetMapping
-    public String sendEmail(@RequestParam String to, @RequestParam String subject, @RequestParam String text) {
-        emailService.sendSimpleMessage(to, subject, text);
-        return "Email sent successfully!";
+    @GetMapping("certification")
+    public String sendCertificationEmail(@RequestBody EmailDto emailDto) {
+        String check = emailService.certificationEmail(emailDto);
+        return check;
     }
+
+    @GetMapping("result")
+    public String sendWinningEmail(@RequestBody UserDto userDto) {
+        String check = emailService.winningEmail(userDto);
+        return check;
+    }
+
 }
