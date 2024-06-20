@@ -5,7 +5,7 @@ import com.example.email.dto.UserDto;
 
 public interface EmailService {
 
-    String certificationEmail(EmailDto emailDto);
+    String welcomeEmail(EmailDto emailDto);
 
     String winningEmail(UserDto userDto);
 

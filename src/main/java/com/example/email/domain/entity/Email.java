@@ -1,6 +1,5 @@
 package com.example.email.domain.entity;
 
-import com.example.email.dto.EmailType;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.mail.SimpleMailMessage;

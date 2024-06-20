@@ -27,7 +27,7 @@ public class EmailServiceImpl implements EmailService{
 
 
     @Override
-    public String certificationEmail(EmailDto emailDto) {
+    public String welcomeEmail(EmailDto emailDto) {
 
         UUID certificationString = UUID.randomUUID(); //UUID 랜덤 생성으로 랜덤 인증값 생성
         //이후 redis 데이터 베이스로 유효시간 설정 예정

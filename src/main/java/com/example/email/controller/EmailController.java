@@ -15,7 +15,7 @@ public class EmailController {
 
     @GetMapping("certification")
     public String sendCertificationEmail(@RequestBody EmailDto emailDto) {
-        String check = emailService.certificationEmail(emailDto);
+        String check = emailService.welcomeEmail(emailDto);
         return check;
     }
 
