@@ -7,13 +7,15 @@ import com.example.email.domain.repository.CertificationRepository;
 import com.example.email.domain.repository.EmailRepository;
 import com.example.email.dto.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Date;
 import java.util.UUID;
+
+import static com.example.email.dto.EmailEnum.CONGRATULATIONS;
+import static com.example.email.dto.EmailEnum.WELCOME;
 
 
 @Service
@@ -31,7 +33,7 @@ public class EmailServiceImpl implements EmailService{
         UUID certificationString = UUID.randomUUID(); //UUID 랜덤 생성으로 랜덤 인증값 생성
         //이후 redis 데이터 베이스로 유효시간 설정 예정
         String sendEmail = WelcomeMessage.makeContents(String.valueOf(certificationString)); //노다지 이메일 규경의 맞춰 이메일 내용 생성
-        String subject = WelcomeMessage.TITLE;
+        String subject = String.valueOf(WELCOME);
         Email email = Email.builder()
                 .subject(subject)       //이메일 제목
                 .to(emailDto.to())      //받는이 이메일 주소
@@ -54,7 +56,7 @@ public class EmailServiceImpl implements EmailService{
     @Override
     public String winningEmail(UserDto userDto) {
         String sendEmail = WinningMessage.makeContents(userDto.name(),userDto.game(),userDto.rank()); //노다지 이메일 규경의 맞춰 이메일 내용 생성
-        String subject = WinningMessage.TITLE;
+        String subject = String.valueOf(CONGRATULATIONS);
         Email email = Email.builder()
                 .subject(subject)       //이메일 제목
                 .to(userDto.email())   //받는이 이메일 주소
