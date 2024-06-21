@@ -9,9 +9,18 @@ spring:
     hibernate:
       ddl-auto: create
 
-  redis:
-    host: localhost
-    port: 6379
+  kafka:
+    bootstrap-servers: localhost
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+      group-id: email
+      auto-offset-reset: earliest
+
+#  redis:
+#    host: localhost
+#    port: 6379
   mail:
     host: smtp.gmail.com
     port: 587

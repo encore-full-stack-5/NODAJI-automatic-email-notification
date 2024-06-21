@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @RequestMapping("api/v1/redis")
 @RequiredArgsConstructor
@@ -14,14 +15,8 @@ public class RedisController {
 
     private final RedisService redisService;
 
-    @GetMapping("/save")
-    public String save(@RequestParam String key, @RequestParam String value) {
-        redisService.save(key, value);
-        return "Saved!";
-    }
-
     @GetMapping("/get")
-    public String get(@RequestParam String key) {
-        return (String) redisService.get(key);
+    public Object get(@RequestParam String key) {
+        return redisService.get(key);
     }
 }

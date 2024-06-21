@@ -1,6 +1,5 @@
 package com.example.email.domain.entity;
 
-import com.example.email.dto.EmailType;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.mail.SimpleMailMessage;
@@ -42,6 +41,9 @@ public class Email extends SimpleMailMessage {
     @Column(name = "EMAIL_SUBJECT", nullable = true)
     private String subject; //이메일 제목
 
+    @Column(name="Email_address")
+    private String address;
+
     @Setter
     @Column(name = "EMAIL_TEXT", nullable = true)
     private String text;    //이메일 내용
@@ -50,11 +52,12 @@ public class Email extends SimpleMailMessage {
     @Column(name = "EMAIL_STATUS", nullable = true)
     private Boolean status; //이메일 발송 여부 확인
 
-    public Email ToEntity(String from, String replyTo, String[] to, String[] cc, String[] bcc, Date sentDate, String subject, String text, Boolean status) {
+    public Email ToEntity(String address,String from, String replyTo, String[] to, String[] cc, String[] bcc, Date sentDate, String subject, String text, Boolean status) {
 
         new Email();
 
         return builder()
+                .address(address)
                 .from(from)
                 .replyTo(replyTo)
                 .to(to)
