@@ -1,7 +1,8 @@
 package com.example.email.dto;
 
 public record UserDto(
-        String[] email,
+        String[] to,
+        String email,
         String id,
         int rank,
         String name,

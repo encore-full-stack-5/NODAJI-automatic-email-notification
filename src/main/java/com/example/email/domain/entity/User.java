@@ -32,4 +32,16 @@ public class User {
     @Column(name="USER_GAME")
     private String game;  //  유저가 참여한 게임
 
+    public User ToEntity(String id, long point, int name, int rank, String game) {
+
+        new User();
+
+        return User.builder()
+                .id(id)
+                .point(point)
+                .name(name)
+                .rank(rank)
+                .game(game)
+                .build();
+    }
 }
