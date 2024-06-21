@@ -10,7 +10,7 @@ spring:
       ddl-auto: create
 
   kafka:
-    bootstrap-servers: localhost
+    bootstrap-servers: localhost:9092
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     consumer:

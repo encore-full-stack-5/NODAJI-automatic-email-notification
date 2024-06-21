@@ -1,13 +1,20 @@
 package com.example.email.service;
 
 import com.example.email.domain.entity.Email;
+
+import com.example.email.domain.entity.User;
 import com.example.email.domain.repository.EmailRepository;
+import com.example.email.domain.repository.UserRepository;
 import com.example.email.dto.*;
+import com.example.email.kafka.dto.KafkaStatus;
+import com.example.email.kafka.dto.KafkaUserDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Optional;
 import java.util.UUID;
 
 import static com.example.email.dto.EmailEnum.CONGRATULATIONS;
@@ -21,6 +28,7 @@ public class EmailServiceImpl implements EmailService{
     private final JavaMailSender javaMailSender;
     private final EmailRepository emailRepository;
     private final RedisService redisService;
+    private final UserRepository userRepository;
 
     @Override
     public String certificationEmail(EmailDto emailDto) {
@@ -43,6 +51,8 @@ public class EmailServiceImpl implements EmailService{
         return sendEmail;
     }
 
+
+
     @Override
     public String winningEmail(UserDto userDto) {
         String sendEmail = WinningMessage.makeContents(userDto.name(),userDto.game(),userDto.rank()); //노다지 이메일 규경의 맞춰 이메일 내용 생성
@@ -60,4 +70,11 @@ public class EmailServiceImpl implements EmailService{
 
         return sendEmail;
     }
-}
+
+
+
+
+
+    }
+
+

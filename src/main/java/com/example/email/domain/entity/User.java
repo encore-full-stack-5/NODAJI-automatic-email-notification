@@ -1,16 +1,14 @@
 package com.example.email.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 @Builder
 @Table(name="USER")
 public class User {
@@ -34,6 +32,7 @@ public class User {
 
     @Column(name="USER_GAME")
     private String game;  //  유저가 참여한 게임
+
 
     public User ToEntity(String email,String id, long point, int name, int rank, String game) {
 
