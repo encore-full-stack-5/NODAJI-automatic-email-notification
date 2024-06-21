@@ -80,7 +80,6 @@ public class EmailServiceImpl implements EmailService{
 
                 String findEmail = byId.get().getEmail();
 
-
                 String sendEmail = WinningMessage.makeContents(status.data().name(), status.data().game(), status.data().rank()); //노다지 이메일 규경의 맞춰 이메일 내용 생성
 
                 String subject = CONGRATULATIONS.getTitle();// enum 상수 이메일 제목
@@ -92,6 +91,7 @@ public class EmailServiceImpl implements EmailService{
                         .sentDate(new Date())   //이메일 발송 시간
                         .from("thtjdalstest@gmail.com") //이메일 발송 계정
                         .build();
+//
                 javaMailSender.send(email);     //이메일 발송
                 emailRepository.save(email);    //이메일 저장
 
