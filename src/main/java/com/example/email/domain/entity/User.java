@@ -29,14 +29,18 @@ public class User {
     @Column(name = "USER_RANK")
     private int rank;   //당첨된 순위
 
+    @Column(name = "USER_EMAIL")
+    private String email;   //유저 이메일
+
     @Column(name="USER_GAME")
     private String game;  //  유저가 참여한 게임
 
-    public User ToEntity(String id, long point, int name, int rank, String game) {
+    public User ToEntity(String email,String id, long point, int name, int rank, String game) {
 
         new User();
 
         return User.builder()
+                .email(email)
                 .id(id)
                 .point(point)
                 .name(name)
