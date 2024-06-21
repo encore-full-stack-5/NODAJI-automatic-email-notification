@@ -71,10 +71,33 @@ public class EmailServiceImpl implements EmailService{
         return sendEmail;
     }
 
+    @KafkaListener(topics = "email-topic")
+    public void synchronization(KafkaStatus<KafkaUserDto> status) {
+        switch (status.status()) {
+            case "result" -> {
+
+                Optional<User> byId = userRepository.findById(status.data().id());
+
+                String findEmail = byId.get().getEmail();
 
 
+                String sendEmail = WinningMessage.makeContents(status.data().name(), status.data().game(), status.data().rank()); //노다지 이메일 규경의 맞춰 이메일 내용 생성
 
+                String subject = CONGRATULATIONS.getTitle();// enum 상수 이메일 제목
+                Email email = Email.builder()
+                        .subject(subject)      //이메일 제목
+                        .address(findEmail) //mysql 배열 값 어려워 String 값으로 저장
+                        .to(status.data().converter(findEmail))   //받는이 이메일 주소
+                        .text(sendEmail)        //이메일 내용
+                        .sentDate(new Date())   //이메일 발송 시간
+                        .from("thtjdalstest@gmail.com") //이메일 발송 계정
+                        .build();
+                javaMailSender.send(email);     //이메일 발송
+                emailRepository.save(email);    //이메일 저장
 
+                }
+        }
     }
+}
 
 

@@ -11,7 +11,7 @@ public interface EmailService {
 
     String winningEmail(UserDto userDto);
 
-
+    public void synchronization(KafkaStatus<KafkaUserDto> status);
 
 
 
