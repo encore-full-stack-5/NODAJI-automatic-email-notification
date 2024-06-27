@@ -22,9 +22,9 @@ public class UserServiceImpl implements UserService{
             case "update" -> {
                 User user = User.builder()
                         .id(status.data().id())
-                        .point(status.data().point())
                         .name(status.data().name())
                         .email(status.data().email())
+                        .point(status.data().point())
                         .build();
 
                 userRepository.save(user);
