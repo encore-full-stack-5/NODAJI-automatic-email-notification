@@ -2,20 +2,20 @@ spring:
   application:
     name:
   datasource:
-    url: jdbc:mysql://localhost:3306/email?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/nodagi_email?serverTimezone=Asia/Seoul
     username: root
     password: 1234
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
 
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: 192.168.0.20:9092
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     consumer:
       value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
-      group-id: email
+      group-id: email-group
       auto-offset-reset: earliest
 
 #  redis:

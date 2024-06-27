@@ -7,9 +7,9 @@ public record KafkaUserDto(
         long point,
         String name,
         int rank,
-        String game
+        String game,
+        String email
 ) {
-
     public String[] converter(String email) {
         String[] emailArray = new String[1];
         emailArray[0] = email;
@@ -19,6 +19,4 @@ public record KafkaUserDto(
     public String[] converter(List<String> emails) {
         return emails.toArray(new String[0]);
     }
-
-
 }

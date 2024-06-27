@@ -6,5 +6,6 @@ import com.example.email.kafka.dto.KafkaUserDto;
 
 public interface UserService {
 
+
     public void synchronization(KafkaStatus<KafkaUserDto> status);
 }

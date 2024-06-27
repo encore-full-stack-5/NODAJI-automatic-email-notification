@@ -13,18 +13,12 @@ public class RedisServiceImpl implements RedisService{
 
     @Override
     public void save(String key, String value) {
-        redisTemplate.opsForValue().set(key, value, 1, TimeUnit.MINUTES);
-
-    }
-
-    public Object get(String key) {
-        Object value = redisTemplate.opsForValue().get(key);
-        if (value == null) {
-            return ("Value not found or expired for key: " + key);
-        } else {
-            return ("Retrieved value: " + value + " for key: " + key);
-        }
+        redisTemplate.opsForValue().set(key, value, 1, TimeUnit.MINUTES); // Ensure value is stored as is <----
     }
 
 
 }
+
+
+
+
