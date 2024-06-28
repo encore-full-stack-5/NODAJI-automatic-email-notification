@@ -7,6 +7,7 @@ public record UserDto(
         int rank,
         String name,
         String game,
-        Long point
+        Long point,
+        int round
 ) {
 }

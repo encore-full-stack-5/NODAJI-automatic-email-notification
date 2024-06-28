@@ -8,7 +8,8 @@ public record KafkaUserDto(
         String name,
         int rank,
         String game,
-        String email
+        String email,
+        int round
 ) {
     public String[] converter(String email) {
         String[] emailArray = new String[1];

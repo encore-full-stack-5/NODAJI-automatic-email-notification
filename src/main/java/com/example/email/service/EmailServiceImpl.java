@@ -59,8 +59,9 @@ public class EmailServiceImpl implements EmailService{
 
         Optional<User> byId = userRepository.findById(data.id());//DB에 해당 유저가 있는지 검색
         String findEmail = byId.get().getEmail();//유저가 있을 경우 이메일주소 저장
+        String findName = byId.get().getName();
 
-        String sendEmail = WinningMessage.makeContents(data.name(),data.game(),data.rank()); //노다지 이메일 규경의 맞춰 이메일 내용 생성
+        String sendEmail = WinningMessage.makeContents(findName,data.game(),data.rank(),data.round()); //노다지 이메일 규경의 맞춰 이메일 내용 생성
         String subject = CONGRATULATIONS.getTitle();// enum 상수 이메일 제목
         Email email = Email.builder()
                 .subject(subject)      //이메일 제목
@@ -90,7 +91,6 @@ public class EmailServiceImpl implements EmailService{
             case "singUp" -> {
                 certificationEmail(status.data());
             }
-
 
         }
 
