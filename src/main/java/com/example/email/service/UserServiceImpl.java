@@ -15,33 +15,34 @@ public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
 
 
-    @KafkaListener(topics = "email-topic")
+    @KafkaListener(topics ="user-topic")
     public void synchronization(KafkaStatus<KafkaUserDto> status) {
         switch (status.status()) {
-            case "delete" -> {
 
-                User user = User.builder()
-                        .id(status.data().id())
-                        .game(status.data().game())
-                        .point(status.data().point())
-                        .rank(status.data().rank())
-                        .build();
-
-                userRepository.delete(user);
-            }
             case "update" -> {
-
                 User user = User.builder()
                         .id(status.data().id())
-                        .game(status.data().game())
+                        .name(status.data().name())
+                        .email(status.data().email())
                         .point(status.data().point())
-                        .rank(status.data().rank())
                         .build();
 
                 userRepository.save(user);
 
                 }
+            case "delete" -> {
+
+                User user = User.builder()
+                        .id(status.data().id())
+                        .build();
+
+                userRepository.delete(user);
             }
+            }
+
+
+
+
 
         }
 }

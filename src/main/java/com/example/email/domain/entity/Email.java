@@ -5,6 +5,7 @@ import lombok.*;
 import org.springframework.mail.SimpleMailMessage;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -70,6 +71,7 @@ public class Email extends SimpleMailMessage {
                 .build();
 
     }
+
 
 }
 
