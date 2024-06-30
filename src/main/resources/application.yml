@@ -2,7 +2,7 @@ spring:
   application:
     name:
   datasource:
-    url: jdbc:mysql://localhost:3306/nodagi_email?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://auth-mysql-email:3306/nodagi_email?serverTimezone=Asia/Seoul
     username: root
     password: 1234
   jpa:
@@ -10,7 +10,7 @@ spring:
       ddl-auto: none
 
   kafka:
-    bootstrap-servers: 192.168.0.20:9092
+    bootstrap-servers: 35.184.196.158:9094
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     consumer:
@@ -18,9 +18,10 @@ spring:
       group-id: email-group
       auto-offset-reset: earliest
 
-#  redis:
-#    host: localhost
-#    port: 6379
+  redis:
+    host: auth-redis
+    port: 6379
+
   mail:
     host: smtp.gmail.com
     port: 587
@@ -32,3 +33,9 @@ spring:
           auth: true
           starttls:
             enable: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

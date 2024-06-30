@@ -12,9 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
 import java.util.Optional;
+import java.util.Date;
 import java.util.UUID;
 
 import static com.example.email.dto.EmailEnum.CONGRATULATIONS;
@@ -57,7 +56,9 @@ public class EmailServiceImpl implements EmailService{
 
 
 
-        Optional<User> byId = userRepository.findById(data.id());//DB에 해당 유저가 있는지 검색
+        Optional<User> byId = Optional.of(userRepository.findById(data.id()).orElseThrow());//DB에 해당 유저가 있는지 검색
+
+
         String findEmail = byId.get().getEmail();//유저가 있을 경우 이메일주소 저장
         String findName = byId.get().getName();
 
